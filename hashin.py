@@ -12,6 +12,7 @@ import re
 import sys
 import json
 from itertools import chain
+from pkg_resources import safe_name
 
 import pip
 
@@ -109,7 +110,7 @@ def run_single_package(spec, file, algorithm, python_versions=None, verbose=Fals
 
     # Independent of how you like to case type it, pick the correct
     # name from the PyPI index.
-    package = data['info']['name']
+    package = safe_name(data['info']['name'])
 
     try:
         releases = data['releases'][version]
